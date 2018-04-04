@@ -153,6 +153,10 @@ open class Section {
     public var isHidden: Bool { return hiddenCache }
 
     public required init() {}
+    
+    public required init<S>(_ elements: S) where S: Sequence, S.Element == BaseRow {
+        self.append(contentsOf: elements)
+    }
 
     public init(_ initializer: (Section) -> Void) {
         initializer(self)
@@ -463,6 +467,16 @@ open class MultivaluedSection: Section {
     public required init() {
         self.multivaluedOptions = MultivaluedOptions.Insert.union(.Delete)
         super.init()
+        self.initialize()
+    }
+    
+    public required init<S>(_ elements: S) where S : Sequence, S.Element == BaseRow {
+        self.multivaluedOptions = MultivaluedOptions.Insert.union(.Delete)
+        super.init(elements)
+        self.initialize()
+    }
+    
+    func initialize() {
         let addRow = addButtonProvider(self)
         addRow.onCellSelection { cell, row in
             guard let tableView = cell.formViewController()?.tableView, let indexPath = row.indexPath else { return }

@@ -141,6 +141,10 @@ open class SelectableSection<Row>: Section, SelectableSectionType where Row: Sel
     public required init() {
         super.init()
     }
+    
+    public required init<S>(_ elements: S) where S : Sequence, S.Element == BaseRow {
+        super.init(elements)
+    }
 
     open override func rowsHaveBeenAdded(_ rows: [BaseRow], at: IndexSet) {
         prepare(selectableRows: rows)
