@@ -106,6 +106,13 @@ protocol ContextualAction {
     var title: String? { get set }
 }
 
+extension ContextualAction {
+    var backgroundColor: UIColor? {
+        get { return nil }
+        set { }
+    }
+}
+
 extension UITableViewRowAction: ContextualAction {
     public var image: UIImage? {
         get { return nil }
