@@ -103,7 +103,7 @@ open class SliderCell: Cell<Float>, CellType {
     func addConstraints() {
         guard !awakeFromNibCalled else { return }
 
-        let views: [String : Any] = ["titleLabel": titleLabel, "valueLabel": valueLabel, "slider": slider]
+        let views: [String : Any] = ["titleLabel": titleLabel as Any, "valueLabel": valueLabel as Any, "slider": slider as Any]
         let metrics = ["vPadding": 12.0, "spacing": 12.0]
         if shouldShowTitle {
             contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[titleLabel]-[valueLabel]-|", options: NSLayoutConstraint.FormatOptions.alignAllLastBaseline, metrics: metrics, views: views))
