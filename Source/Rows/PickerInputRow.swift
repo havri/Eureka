@@ -74,7 +74,7 @@ open class PickerInputCell<T> : Cell<T>, CellType, UIPickerViewDataSource, UIPic
         }
 
         picker.reloadAllComponents()
-        if let selectedValue = pickerInputRow?.value, let index = pickerInputRow?.options.index(of: selectedValue) {
+        if let selectedValue = pickerInputRow?.value, let index = pickerInputRow?.options.firstIndex(of: selectedValue) {
             picker.selectRow(index, inComponent: 0, animated: true)
         }
 

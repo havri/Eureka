@@ -67,7 +67,7 @@ open class PickerCell<T> : Cell<T>, CellType, UIPickerViewDataSource, UIPickerVi
         textLabel?.text = nil
         detailTextLabel?.text = nil
         picker.reloadAllComponents()
-        if let selectedValue = pickerRow?.value, let index = pickerRow?.options.index(of: selectedValue) {
+        if let selectedValue = pickerRow?.value, let index = pickerRow?.options.firstIndex(of: selectedValue) {
             picker.selectRow(index, inComponent: 0, animated: true)
         }
     }
