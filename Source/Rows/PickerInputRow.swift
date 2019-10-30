@@ -68,7 +68,11 @@ open class PickerInputCell<T> : Cell<T>, CellType, UIPickerViewDataSource, UIPic
             detailTextLabel?.text = nil
         }
 
-        textLabel?.textColor = row.isDisabled ? .gray : .black
+        if #available(iOSApplicationExtension 13.0, *) {
+            textLabel?.textColor = row.isDisabled ? .tertiaryLabel : .label
+        } else {
+            textLabel?.textColor = row.isDisabled ? .gray : .black
+        }
         if row.isHighlighted {
             textLabel?.textColor = tintColor
         }

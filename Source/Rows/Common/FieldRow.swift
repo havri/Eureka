@@ -226,7 +226,11 @@ open class _FieldCell<T> : Cell<T>, UITextFieldDelegate, TextFieldCell where T: 
         textField.delegate = self
         textField.text = row.displayValueFor?(row.value)
         textField.isEnabled = !row.isDisabled
-        textField.textColor = row.isDisabled ? .gray : .black
+        if #available(iOSApplicationExtension 13.0, *) {
+            textField.textColor = row.isDisabled ? .tertiaryLabel : .label
+        } else {
+            textField.textColor = row.isDisabled ? .gray : .black
+        }
         textField.font = .preferredFont(forTextStyle: .body)
         if let placeholder = (row as? FieldRowConformance)?.placeholder {
             if let color = (row as? FieldRowConformance)?.placeholderColor {
