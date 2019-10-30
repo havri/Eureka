@@ -118,7 +118,7 @@ public class WeekDayCell : Cell<Set<WeekDay>>, CellType {
         let spacing : CGFloat = 3.0
         button.titleEdgeInsets = UIEdgeInsets.init(top: 0.0, left: -imageSize.width, bottom: -(imageSize.height + spacing), right: 0.0)
         guard let titleLabel = button.titleLabel, let title = titleLabel.text else { return }
-        let titleSize = title.size(withAttributes: [NSAttributedString.Key.font: titleLabel.font])
+        let titleSize = title.size(withAttributes: [NSAttributedString.Key.font: titleLabel.font as Any])
         button.imageEdgeInsets = UIEdgeInsets.init(top: -(titleSize.height + spacing), left: 0, bottom: 0, right: -titleSize.width)
     }
 }
@@ -147,10 +147,6 @@ public class _FloatLabelCell<T>: Cell<T>, UITextFieldDelegate, TextFieldCell whe
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    required init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        fatalError("init(style:reuseIdentifier:) has not been implemented")
     }
 
     lazy public var floatLabelTextField: FloatLabelTextField = { [unowned self] in
@@ -706,10 +702,6 @@ public class ImageCheckCell<T: Equatable> : Cell<T>, CellType {
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    required init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        fatalError("init(style:reuseIdentifier:) has not been implemented")
     }
 
     /// Image for selected state
