@@ -451,11 +451,11 @@
 			};
 			buildConfigurationList = 51729DE51B9A4F5E004A00EB /* Build configuration list for PBXProject "Eureka" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 51729DE11B9A4F5E004A00EB;
 			productRefGroup = 51729DEC1B9A4F5E004A00EB /* Products */;
