@@ -201,57 +201,89 @@ extension RowType where Self: BaseRow {
      */
     @discardableResult
     public func onChange(_ callback: @escaping (Self) -> Void) -> Self {
-        callbackOnChange = { [unowned self] in callback(self) }
+        callbackOnChange = { [weak self] in
+            guard let s = self else {
+                return
+            }
+            callback(s)
+        }
         return self
     }
 
     /**
      Sets a block to be called when the cell corresponding to this row is refreshed.
-
+     
      - returns: this row
      */
     @discardableResult
     public func cellUpdate(_ callback: @escaping ((_ cell: Cell, _ row: Self) -> Void)) -> Self {
-        callbackCellUpdate = { [unowned self] in  callback(self.cell, self) }
+        callbackCellUpdate = { [weak self] in
+            guard let s = self else {
+                return
+            }
+            callback(s.cell, s)
+            
+        }
         return self
     }
-
+    
     /**
      Sets a block to be called when the cell corresponding to this row is created.
-
+     
      - returns: this row
      */
     @discardableResult
     public func cellSetup(_ callback: @escaping ((_ cell: Cell, _ row: Self) -> Void)) -> Self {
-        callbackCellSetup = { [unowned self] (cell: Cell) in  callback(cell, self) }
+        callbackCellSetup = { [weak self] (cell: Cell) in
+            guard let s = self else {
+                return
+            }
+            callback(cell, s)
+            
+        }
         return self
     }
-
+    
     /**
      Sets a block to be called when the cell corresponding to this row is selected.
-
+     
      - returns: this row
      */
     @discardableResult
     public func onCellSelection(_ callback: @escaping ((_ cell: Cell, _ row: Self) -> Void)) -> Self {
-        callbackCellOnSelection = { [unowned self] in  callback(self.cell, self) }
+        callbackCellOnSelection = { [weak self] in
+            guard let s = self else {
+                return
+            }
+            callback(s.cell, s)
+        }
         return self
     }
-
+    
     /**
      Sets a block to be called when the cell corresponding to this row becomes or resigns the first responder.
-
+     
      - returns: this row
      */
     @discardableResult
     public func onCellHighlightChanged(_ callback: @escaping (_ cell: Cell, _ row: Self) -> Void) -> Self {
-        callbackOnCellHighlightChanged = { [unowned self] in callback(self.cell, self) }
+        callbackOnCellHighlightChanged = { [weak self] in
+            guard let s = self else {
+                return
+            }
+            callback(s.cell, s)
+        }
         return self
     }
-
+    
     @discardableResult
     public func onRowValidationChanged(_ callback: @escaping (_ cell: Cell, _ row: Self) -> Void) -> Self {
-        callbackOnRowValidationChanged = { [unowned self] in  callback(self.cell, self) }
+        callbackOnRowValidationChanged = { [weak self] in
+            guard let s = self else {
+                return
+            }
+            callback(s.cell, s)
+        }
         return self
     }
 }
