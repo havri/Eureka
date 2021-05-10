@@ -61,7 +61,7 @@ public protocol SelectableSectionType: Collection {
     func selectedRows() -> [SelectableRow]
 }
 
-extension SelectableSectionType where Self: Section {
+extension SelectableSectionType where Element == BaseRow, Self: AnyObject  {
     /**
      Returns the selected row of this section. Should be used if selectionType is SingleSelection
      */
