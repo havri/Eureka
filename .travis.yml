@@ -9,7 +9,7 @@ before_install:
 script:
   - set -o pipefail
   - xcodebuild -version
-  - xcodebuild -project Eureka.xcodeproj -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO test | xcpretty -c
+  - xcodebuild -project Eureka.xcodeproj -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test | xcpretty -c
 before_deploy:
   - carthage build --no-skip-current
   - carthage archive Eureka
